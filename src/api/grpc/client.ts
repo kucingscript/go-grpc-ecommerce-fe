@@ -1,12 +1,17 @@
 import { GrpcWebFetchTransport } from "@protobuf-ts/grpcweb-transport";
+import { authInterceptor } from "./auth-interceptor";
 import {
   AuthServiceClient,
   IAuthServiceClient,
 } from "../../../pb/auth/auth.client";
-import { authInterceptor } from "./auth-interceptor";
+import {
+  IProductServiceClient,
+  ProductServiceClient,
+} from "../../../pb/product/product.client";
 
 let webTrasnport: GrpcWebFetchTransport | null = null;
 let authClient: IAuthServiceClient | null = null;
+let productClient: IProductServiceClient | null = null;
 
 const getWebTransport = () => {
   if (webTrasnport === null) {
@@ -25,4 +30,12 @@ export const getAuthClient = () => {
   }
 
   return authClient;
+};
+
+export const getProductClient = () => {
+  if (productClient === null) {
+    productClient = new ProductServiceClient(getWebTransport());
+  }
+
+  return productClient;
 };

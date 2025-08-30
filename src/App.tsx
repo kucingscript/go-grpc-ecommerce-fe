@@ -28,6 +28,7 @@ import { useEffect, useState } from "react";
 import { useAuthStore } from "./store/auth";
 import { getAuthClient } from "./api/grpc/client";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import AdminEditProduct from "./pages/AdminEditProduct/AdminEditProduct";
 
 const router = createBrowserRouter([
   {
@@ -87,6 +88,7 @@ const router = createBrowserRouter([
           },
           { path: "order", element: <AdminOrderDetail /> },
           { path: "products/create", element: <AdminCreateProduct /> },
+          { path: "products/:id/edit", element: <AdminEditProduct /> },
         ],
       },
     ],
