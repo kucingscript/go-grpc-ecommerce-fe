@@ -54,7 +54,7 @@ const Login = () => {
     if (useAuthStore.getState().role === "admin") {
       navigate("/admin/dashboard");
     } else {
-      navigate("/");
+      navigate(-1);
     }
   };
 

@@ -8,10 +8,15 @@ import {
   IProductServiceClient,
   ProductServiceClient,
 } from "../../../pb/product/product.client";
+import {
+  CartServiceClient,
+  ICartServiceClient,
+} from "../../../pb/cart/cart.client";
 
 let webTrasnport: GrpcWebFetchTransport | null = null;
 let authClient: IAuthServiceClient | null = null;
 let productClient: IProductServiceClient | null = null;
+let cartClient: ICartServiceClient | null = null;
 
 const getWebTransport = () => {
   if (webTrasnport === null) {
@@ -38,4 +43,12 @@ export const getProductClient = () => {
   }
 
   return productClient;
+};
+
+export const getCartClient = () => {
+  if (cartClient === null) {
+    cartClient = new CartServiceClient(getWebTransport());
+  }
+
+  return cartClient;
 };
